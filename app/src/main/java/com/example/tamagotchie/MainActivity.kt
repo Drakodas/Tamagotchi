@@ -1,8 +1,6 @@
 package com.example.tamagotchie
 
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageButton
@@ -19,12 +17,12 @@ class MainActivity : AppCompatActivity() {
     val gameLoop = Thread() {
         val appobject = application as App
         var oldsize = appobject.size
-        val sharedPref: SharedPreferences = getSharedPreferences("Tamagotchi", Context.MODE_PRIVATE)
-        sharedPref.getInt("Size", 1)
-        sharedPref.edit().putInt("Size", appobject.size).apply()
+
+
 
         while (Running) {
             val appobject = application as App
+            appobject.settings.edit().putInt("Size", appobject.size).apply()
             appobject.size
             if (appobject.size != oldsize) {
                 oldsize = appobject.size

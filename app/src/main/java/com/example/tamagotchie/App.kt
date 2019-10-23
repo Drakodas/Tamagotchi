@@ -5,12 +5,13 @@ import android.content.Context
 import android.content.SharedPreferences
 
 class App : Application() {
+    lateinit var settings: SharedPreferences
+
     var size = 1
     override fun onCreate() {
         super.onCreate()
-        val sharedPref: SharedPreferences = getSharedPreferences("Tamagotchi", Context.MODE_PRIVATE)
-        sharedPref.edit().putInt("Size", size).apply()
-        size = sharedPref.getInt("Size", 1)
+        settings = getSharedPreferences("Tamagotchi", Context.MODE_PRIVATE)
+        size = settings.getInt("Size", 1)
     }
 }
 
