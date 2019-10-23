@@ -38,6 +38,7 @@ class MainActivity : AppCompatActivity() {
         val button_level: ImageButton = findViewById(R.id.level_button)
         val button_food: ImageButton = findViewById(R.id.food_button)
         val button_poop: ImageButton = findViewById(R.id.poop_button)
+        val button_training: ImageButton = findViewById(R.id.training_button)
 
         val appobject = application as App
         appobject.size
@@ -69,6 +70,13 @@ class MainActivity : AppCompatActivity() {
         button_poop.setOnClickListener {
             poop_image.visibility = View.INVISIBLE
 
+
+        }
+
+        button_training.setOnClickListener {
+            startActivity(
+                Intent(this, training::class.java)
+            )
 
         }
 
