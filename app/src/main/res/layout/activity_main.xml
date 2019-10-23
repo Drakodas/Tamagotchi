@@ -97,7 +97,7 @@
         app:srcCompat="@drawable/poop" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/tamagotchi"
         android:layout_width="105dp"
         android:layout_height="121dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView2"
