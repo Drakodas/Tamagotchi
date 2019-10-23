@@ -54,13 +54,13 @@ class MainActivity : AppCompatActivity() {
             val builder = AlertDialog.Builder(this@MainActivity)
             builder.setTitle("Food")
             builder.setMessage("Choose the Food")
-            builder.setPositiveButton("Powerpil") { dialog, which ->
-                Toast.makeText(applicationContext, "You choosed Powerpil", Toast.LENGTH_SHORT)
+            builder.setPositiveButton("Pill") { dialog, which ->
+                Toast.makeText(applicationContext, "You´ve chosen the Pill", Toast.LENGTH_SHORT)
                     .show()
                 appobject.size += 1
             }
-            builder.setNegativeButton("Flesh") { dialog, which ->
-                Toast.makeText(applicationContext, "You choosed Flesh", Toast.LENGTH_SHORT).show()
+            builder.setNegativeButton("Meat") { dialog, which ->
+                Toast.makeText(applicationContext, "You´ve chosen the Meat", Toast.LENGTH_SHORT).show()
                 appobject.size += 1
             }
             val dialog: AlertDialog = builder.create()
