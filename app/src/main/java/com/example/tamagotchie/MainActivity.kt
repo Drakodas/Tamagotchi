@@ -21,12 +21,10 @@ class MainActivity : AppCompatActivity() {
 
 
         while (Running) {
-            val appobject = application as App
-            appobject.settings.edit().putInt("Size", appobject.size).apply()
-            appobject.size
             if (appobject.size != oldsize) {
                 oldsize = appobject.size
                 runOnUiThread { poop_image.visibility = View.VISIBLE }
+                appobject.settings.edit().putInt("Size", appobject.size).apply()
             }
         }
     }
