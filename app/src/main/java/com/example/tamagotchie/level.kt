@@ -13,6 +13,8 @@ class level : AppCompatActivity() {
         setContentView(R.layout.level)
 
         val cancel: ImageButton by lazy { findViewById<ImageButton>(R.id.cancel) }
+        val tamer_name: TextView by lazy { findViewById<TextView>(R.id.tamer_name) }
+        val name_text = tamer_name.text.toString()
         var textSize: TextView = findViewById(R.id.text_sizelevel)
         var appobject = application as App
         textSize.text = appobject.size.toString()
@@ -21,8 +23,9 @@ class level : AppCompatActivity() {
             startActivity(
                 Intent(this, MainActivity::class.java)
             )
-
         }
+
+
     }
 
 }
