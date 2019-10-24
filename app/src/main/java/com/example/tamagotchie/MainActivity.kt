@@ -14,20 +14,23 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-
+    val appobject by lazy { application as App }
+    val setstage0: Button by lazy { findViewById<Button>(R.id.setstage0) }
     val button_level: ImageButton by lazy { findViewById<ImageButton>(R.id.level_button) }
     val button_food: ImageButton by lazy { findViewById<ImageButton>(R.id.food_button) }
     val button_poop: ImageButton by lazy { findViewById<ImageButton>(R.id.poop_button) }
-    val set: Button by lazy { findViewById<Button>(R.id.set0) }
-    //val button_training: ImageButton by lazy {findViewById<ImageButton>(R.id.training_button)}
+    val set0: Button by lazy { findViewById<Button>(R.id.set0) }
+    val button_training: ImageButton by lazy { findViewById<ImageButton>(R.id.training_button) }
     val picture_tamagotchi: ImageView by lazy { findViewById<ImageView>(R.id.tamagotchi) }
 
+    var evolution = 0
     var Running = true
 
     val gameLoop = Thread() {
-        val appobject = application as App
         var oldsize = appobject.size
         var eventSizeStart: Long = 0L
+        var poop1visible = 0
+        evolution = appobject.settings.getInt("EvolutionStage", 0)
         while (Running) {
             val zeitJetzt = System.currentTimeMillis()
 
@@ -37,14 +40,25 @@ class MainActivity : AppCompatActivity() {
 
             if (eventSizeStart != 0L && zeitJetzt - eventSizeStart > 1000) {
                 runOnUiThread { picture_tamagotchi.visibility = View.INVISIBLE }
+                evolution = 1
+                appobject.settings.edit().putInt("EvolutionStage", evolution).apply()
             }
 
             if (appobject.size != oldsize) {
                 oldsize = appobject.size
                 runOnUiThread { poop_image.visibility = View.VISIBLE }
                 appobject.settings.edit().putInt("Size", appobject.size).apply()
+                poop1visible = 1
+            }
+
+            if (poop1visible == 1 && appobject.size != oldsize) {
+                runOnUiThread { poop_image2.visibility = View.VISIBLE }
+                poop1visible = 0
+
             }
         }
+
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,11 +66,17 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         gameLoop.start()
 
-
-        val appobject = application as App
         appobject.size
 
-        set.setOnClickListener {
+        setstage0.setOnClickListener {
+            evolution = 0
+            appobject.settings.edit().putInt("EvolutionStage", evolution).apply()
+            tamagotchi.visibility = View.VISIBLE
+
+
+        }
+
+        set0.setOnClickListener {
             appobject.size = 0
 
         }
@@ -88,17 +108,17 @@ class MainActivity : AppCompatActivity() {
 
         button_poop.setOnClickListener {
             poop_image.visibility = View.INVISIBLE
+            poop_image2.visibility = View.INVISIBLE
 
 
         }
 
-        /* button_training.setOnClickListener {
-             startActivity(
-                 Intent(this, training::class.java)
-             )
+        button_training.setOnClickListener {
+            startActivity(
+                Intent(this, training::class.java)
+            )
 
-         }*/
-
+        }
 
     }
 

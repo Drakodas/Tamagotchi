@@ -18,6 +18,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".level" />
+        <activity android:name=".training" />
     </application>
 
 </manifest>

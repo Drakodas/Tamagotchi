@@ -12,6 +12,8 @@ class App : Application() {
         super.onCreate()
         settings = getSharedPreferences("Tamagotchi", Context.MODE_PRIVATE)
         size = settings.getInt("Size", 1)
+
+
     }
 }
 
